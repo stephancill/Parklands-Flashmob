@@ -13,7 +13,6 @@
 		D43879EE1E5B227100494D86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879EC1E5B227100494D86 /* Main.storyboard */; };
 		D43879F01E5B227100494D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43879EF1E5B227100494D86 /* Assets.xcassets */; };
 		D43879F31E5B227100494D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879F11E5B227100494D86 /* LaunchScreen.storyboard */; };
-		D44CD2BB1E6807B90064DE2C /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44CD2BA1E6807B90064DE2C /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,7 +25,6 @@
 		D43879EF1E5B227100494D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D43879F21E5B227100494D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D43879F41E5B227100494D86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D44CD2BA1E6807B90064DE2C /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		F374C949E1773EBD5C049E83 /* Pods-Parklands Flashmob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parklands Flashmob.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parklands Flashmob/Pods-Parklands Flashmob.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -86,7 +84,6 @@
 				D43879EF1E5B227100494D86 /* Assets.xcassets */,
 				D43879F11E5B227100494D86 /* LaunchScreen.storyboard */,
 				D43879F41E5B227100494D86 /* Info.plist */,
-				D44CD2BA1E6807B90064DE2C /* Post.swift */,
 			);
 			path = "Parklands Flashmob";
 			sourceTree = "<group>";
@@ -215,7 +212,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D44CD2BB1E6807B90064DE2C /* Post.swift in Sources */,
 				D43879EB1E5B227100494D86 /* ViewController.swift in Sources */,
 				D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */,
 			);
@@ -261,6 +257,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -311,6 +308,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -340,6 +338,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5990BEAA6D9C371CC0E80988 /* Pods-Parklands Flashmob.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RX8VB86N8V;
 				INFOPLIST_FILE = "Parklands Flashmob/Info.plist";
@@ -354,6 +353,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F374C949E1773EBD5C049E83 /* Pods-Parklands Flashmob.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RX8VB86N8V;
 				INFOPLIST_FILE = "Parklands Flashmob/Info.plist";
