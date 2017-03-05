@@ -10,6 +10,38 @@ import UIKit
 import YouTubePlayer
 
 class ViewController: UIViewController {
+	
+	var scrollView: UIScrollView!
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		/*
+		This gets run when the app launches
+		*/
+		// ...
+		
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+class ViewController: UIViewController {
 
 	var scrollView: UIScrollView!
 	
@@ -128,4 +160,4 @@ class ViewController: UIViewController {
 	
 	
 }
-
+*/
