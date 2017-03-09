@@ -9,7 +9,7 @@
 import UIKit
 import YouTubePlayer
 
-class ViewController: UIViewController {
+/*class ViewController: UIViewController {
 	
 	var scrollView: UIScrollView!
 	
@@ -21,7 +21,7 @@ class ViewController: UIViewController {
 		// ...
 		
 	}
-}
+}*/
 
 
 
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
 
 
 
-/*
+
 class ViewController: UIViewController {
 
 	var scrollView: UIScrollView!
@@ -98,27 +98,36 @@ class ViewController: UIViewController {
 		let session = URLSession.shared
 		
 		// HTTP request execution
-		session.dataTask(with: request) {data, response, err in
-			do {
+		session.dataTask(with: request)
+        {
+            data, response, err in
+			do
+            {
 				// If response from HTTP request is not nil, try to make a JSON object (Dictionary) from it
-				if let data = data, let json = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = json["items"] as? [[String: Any]] {
+				if let data = data, let json = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = json["items"] as? [[String: Any]]
+                {
 					// List of post details dectionaries
 					var posts: [[String:Any]] = []
 					// Keeping track of our last post frame processed
 					var last: CGRect?
 					
-					for item in items {
-						if let snippet = (item as [String: Any])["snippet"] as? [String: Any] {
+					for item in items
+                    {
+						if let snippet = (item as [String: Any])["snippet"] as? [String: Any]
+                        {
 							let title = snippet["title"] as! String
 							let description = snippet["description"] as! String
 							let videoID = (snippet["resourceId"] as! [String:String])["videoId"]!
 							let frame: CGRect!
 							
 							// If lastPostFrame == nil, then we are processing our first post frame.
-							if let lastPostFrame = last {
+							if let lastPostFrame = last
+                            {
 								// Not first frame - get the bottom of the previous frame and set it as the top of the next frame
 								frame = CGRect(x: 0, y: lastPostFrame.maxY+20, width: self.view.frame.width, height: 200)
-							} else {
+							}
+                            else
+                            {
 								// First frame - set the top of the frame to the top of the parent view
 								frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 200)
 							}
@@ -152,7 +161,9 @@ class ViewController: UIViewController {
 					/* nw_socket_set_common_sockopts setsockopt SO_NOAPNFALLBK failed: [42] Protocol not available, dumping backtrace: */
 					// http://stackoverflow.com/questions/39545603/error-protocol-not-available-dumping-backtrace#40330175
 				}
-			} catch {
+			}
+            catch
+            {
 				print("Error deserializing JSON: \(error)")
 			}
 		}.resume() // Start doing everything we just coded up
@@ -160,4 +171,4 @@ class ViewController: UIViewController {
 	
 	
 }
-*/
+
