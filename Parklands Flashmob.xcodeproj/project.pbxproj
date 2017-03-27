@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		43AD7C9B9A7929D714EC80C0 /* Pods_Parklands_Flashmob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2FA50A34ED8D7E3B61960A /* Pods_Parklands_Flashmob.framework */; };
+		64C2CD3F1E894AC900BC4D64 /* UIPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C2CD3E1E894AC900BC4D64 /* UIPost.swift */; };
 		D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43879E81E5B227100494D86 /* AppDelegate.swift */; };
 		D43879EB1E5B227100494D86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43879EA1E5B227100494D86 /* ViewController.swift */; };
 		D43879EE1E5B227100494D86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879EC1E5B227100494D86 /* Main.storyboard */; };
@@ -17,6 +18,7 @@
 
 /* Begin PBXFileReference section */
 		5990BEAA6D9C371CC0E80988 /* Pods-Parklands Flashmob.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parklands Flashmob.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Parklands Flashmob/Pods-Parklands Flashmob.debug.xcconfig"; sourceTree = "<group>"; };
+		64C2CD3E1E894AC900BC4D64 /* UIPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPost.swift; sourceTree = "<group>"; };
 		6C2FA50A34ED8D7E3B61960A /* Pods_Parklands_Flashmob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parklands_Flashmob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43879E51E5B227100494D86 /* Parklands Flashmob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parklands Flashmob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43879E81E5B227100494D86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				D43879EF1E5B227100494D86 /* Assets.xcassets */,
 				D43879F11E5B227100494D86 /* LaunchScreen.storyboard */,
 				D43879F41E5B227100494D86 /* Info.plist */,
+				64C2CD3E1E894AC900BC4D64 /* UIPost.swift */,
 			);
 			path = "Parklands Flashmob";
 			sourceTree = "<group>";
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D43879EB1E5B227100494D86 /* ViewController.swift in Sources */,
+				64C2CD3F1E894AC900BC4D64 /* UIPost.swift in Sources */,
 				D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

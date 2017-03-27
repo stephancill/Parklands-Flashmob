@@ -4,3 +4,7 @@ Pods/Manifest.lock
 Pods/Pods.xcodeproj
 Pods/Target Support Files
 
+
+*.xcuserstate
+
+*.xcuserstate
