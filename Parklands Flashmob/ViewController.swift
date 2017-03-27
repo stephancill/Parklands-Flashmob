@@ -12,6 +12,7 @@ import YouTubePlayer
 class ViewController: UIViewController {
 
 	var scrollView: UIScrollView!
+	var posts: [UIPost] = []
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -31,20 +32,9 @@ class ViewController: UIViewController {
 	}
 	
 	func createVideos(posts: [[String: Any]]) {
-		for post in posts {
-			let frame = post["frame"] as! CGRect
-			let videoID = post["videoID"] as! String
-			
-			// Extend the scrollView as new videos are added.
-			if frame.maxY > self.scrollView.frame.height {
-				self.scrollView.contentSize = CGSize(width: self.scrollView.frame.width, height: frame.maxY)
-			}
-			
+		for postDetails in posts {
 			DispatchQueue.main.async {
-				let subView = YouTubePlayerView(frame: frame)
-				subView.loadVideoID(videoID: videoID)
-				subView.backgroundColor = UIColor.red
-				self.scrollView.addSubview(subView)
+				self.posts.append(UIPost(videoDetails: postDetails, parentView: self.scrollView))
 			}
 		}
 	}
