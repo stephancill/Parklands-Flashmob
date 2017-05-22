@@ -9,11 +9,12 @@
 /* Begin PBXBuildFile section */
 		43AD7C9B9A7929D714EC80C0 /* Pods_Parklands_Flashmob.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C2FA50A34ED8D7E3B61960A /* Pods_Parklands_Flashmob.framework */; };
 		D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43879E81E5B227100494D86 /* AppDelegate.swift */; };
-		D43879EB1E5B227100494D86 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43879EA1E5B227100494D86 /* ViewController.swift */; };
+		D43879EB1E5B227100494D86 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43879EA1E5B227100494D86 /* FeedViewController.swift */; };
 		D43879EE1E5B227100494D86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879EC1E5B227100494D86 /* Main.storyboard */; };
 		D43879F01E5B227100494D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43879EF1E5B227100494D86 /* Assets.xcassets */; };
 		D43879F31E5B227100494D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879F11E5B227100494D86 /* LaunchScreen.storyboard */; };
 		D4C172DB1E894A4900E130E5 /* UIPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C172DA1E894A4900E130E5 /* UIPost.swift */; };
+		D4D1ECDD1ED2C880006BB7CD /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1ECDC1ED2C880006BB7CD /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,12 +22,13 @@
 		6C2FA50A34ED8D7E3B61960A /* Pods_Parklands_Flashmob.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Parklands_Flashmob.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43879E51E5B227100494D86 /* Parklands Flashmob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parklands Flashmob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43879E81E5B227100494D86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D43879EA1E5B227100494D86 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D43879EA1E5B227100494D86 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		D43879ED1E5B227100494D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D43879EF1E5B227100494D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D43879F21E5B227100494D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D43879F41E5B227100494D86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D4C172DA1E894A4900E130E5 /* UIPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPost.swift; sourceTree = "<group>"; };
+		D4D1ECDC1ED2C880006BB7CD /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		F374C949E1773EBD5C049E83 /* Pods-Parklands Flashmob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parklands Flashmob.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parklands Flashmob/Pods-Parklands Flashmob.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,7 +83,8 @@
 			isa = PBXGroup;
 			children = (
 				D43879E81E5B227100494D86 /* AppDelegate.swift */,
-				D43879EA1E5B227100494D86 /* ViewController.swift */,
+				D43879EA1E5B227100494D86 /* FeedViewController.swift */,
+				D4D1ECDC1ED2C880006BB7CD /* CameraViewController.swift */,
 				D43879EC1E5B227100494D86 /* Main.storyboard */,
 				D43879EF1E5B227100494D86 /* Assets.xcassets */,
 				D43879F11E5B227100494D86 /* LaunchScreen.storyboard */,
@@ -190,7 +193,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		E68100F1C20ADA823C055049 /* [CP] Embed Pods Frameworks */ = {
@@ -215,7 +218,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43879EB1E5B227100494D86 /* ViewController.swift in Sources */,
+				D43879EB1E5B227100494D86 /* FeedViewController.swift in Sources */,
+				D4D1ECDD1ED2C880006BB7CD /* CameraViewController.swift in Sources */,
 				D4C172DB1E894A4900E130E5 /* UIPost.swift in Sources */,
 				D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */,
 			);
