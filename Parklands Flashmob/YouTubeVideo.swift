@@ -8,6 +8,18 @@
 
 import UIKit
 
-class YouTubeVideo: NSObject {
-
+struct YouTubeVideo {
+    var title: String
+    var datePublished: String
+    var timeAgo: String {
+        let date = ISO8601DateFormatter()
+        date.formatOptions = .withFullDate
+        let dateString = datePublished
+        let dateTime = date.date(from: dateString)
+        return dateTime!.timeAgoDisplay()
+    }
+    var videoDescription: String
+    var videoID: String
 }
+
+

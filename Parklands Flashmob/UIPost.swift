@@ -35,10 +35,10 @@ class UIPost: UIView {
 		titleSubview = UIScrollView(frame: CGRect(x: 10, y: 2, width: self.frame.width, height: 40))
 		titleSubview.showsHorizontalScrollIndicator = false
 		
-		let date = ISO8601DateFormatter()
-		date.formatOptions = .withFullDate
-		let dateString = videoDetails["date"] as! String
-		let dateTime = date.date(from: dateString)
+        let date = ISO8601DateFormatter()
+        date.formatOptions = .withFullDate
+        let dateString = videoDetails["date"] as! String
+        let dateTime = date.date(from: dateString)
 		
 		titleLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.width*2, height: 40))
 		titleLabel.text = dateTime?.timeAgoDisplay()
@@ -62,46 +62,5 @@ class UIPost: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-}
-
-extension UIView {
-	
-	func dropShadow() {
-		
-		self.layer.masksToBounds = false
-		self.layer.shadowColor = UIColor.black.cgColor
-		self.layer.shadowOpacity = 0.5
-		self.layer.shadowOffset = CGSize(width: -1, height: 3)
-		self.layer.shadowRadius = 1
-		
-		self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
-		self.layer.shouldRasterize = true
-	}
-}
-
-extension Date {
-	func timeAgoDisplay() -> String {
-		let secondsAgo = Int(Date().timeIntervalSince(self))
-		
-		let minute = 60
-		let hour = 60 * minute
-		let day = 24 * hour
-		let week = 7 * day
-		let month = 4 * week
-		
-		if secondsAgo < minute {
-			return "just now"
-		} else if secondsAgo < hour {
-			return "\(secondsAgo / minute) minute\((secondsAgo / minute > 1 ? "s" : "")) ago"
-		} else if secondsAgo < day {
-			return "\(secondsAgo / hour) hour\((secondsAgo / hour > 1 ? "s" : "")) ago"
-		} else if secondsAgo < week {
-			return "\(secondsAgo / day) day\((secondsAgo / day > 1 ? "s" : "")) ago"
-		} else if secondsAgo < month {
-			return "\(secondsAgo / week) week\((secondsAgo / week > 1 ? "s" : "")) ago"
-		}
-		
-		return "\(secondsAgo / month) month\((secondsAgo / month > 1 ? "s" : "")) ago"
-	}
 }
 

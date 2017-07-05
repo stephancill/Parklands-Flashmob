@@ -22,7 +22,6 @@ class FeedViewController: UIViewController {
 		/*
 		This gets run when the app launches
 		*/
-		// ...
 		// Set up our scroll view
 		
 		self.navigationItem.title = "🎬"

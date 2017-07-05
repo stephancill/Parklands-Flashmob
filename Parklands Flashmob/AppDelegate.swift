@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.makeKeyAndVisible()
-		window?.rootViewController = UINavigationController(rootViewController: FeedViewController())
+		window?.rootViewController = UINavigationController(rootViewController: CollectionViewController())
 		
 		return true
 		
