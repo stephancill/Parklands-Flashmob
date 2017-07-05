@@ -22,8 +22,8 @@ class YouTubePlaylistManager: NSObject {
         self.PLAYLIST_ID = id
         super.init()
 		
+		// Fetch locally cached videos
 		let request = NSFetchRequest<YouTubeVideoData>(entityName: "YouTubeVideoData")
-		
 		do {
 			videos = try CoreDataManager.sharedManager().getContext().fetch(request)
 		} catch {
@@ -37,9 +37,11 @@ class YouTubePlaylistManager: NSObject {
             do {
                 // If response from HTTP request is not nil, try to make a JSON object (Dictionary) from it
                 if let data = data, let json = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = (json["items"] as? [[String: Any]])?.reversed() {
-                    
+					
+					// Store new videos
                     var newVideos: [YouTubeVideoData] = []
-                    
+					
+					// Iterate through the videos in the playlist
                     for item in items {
                         if let snippet = (item as [String: Any])["snippet"] as? [String: Any] {
                             
@@ -47,15 +49,16 @@ class YouTubePlaylistManager: NSObject {
                             let datePublished = snippet["publishedAt"] as! String
                             let description = snippet["description"] as! String
                             let videoID = (snippet["resourceId"] as! [String:String])["videoId"]!
-                            
-                            let youtubeVideo = YouTubeVideoData(title: title, datePublished: datePublished, videoDescription: description, videoID: videoID)
-
-                            if self.videos.filter({ (video) -> Bool in
-                                return youtubeVideo.videoID == video.videoID
-                            }).count == 0 {
-								print("New")
-                                newVideos.append(youtubeVideo)
-                                self.videos.append(youtubeVideo)
+							
+							// Create a record in CoreData model if the video is new
+							if (self.videos.filter { $0.videoID == videoID }).count == 0 {
+								// Intialization creates record in CoreData
+								let newVideo = YouTubeVideoData(title: title, datePublished: datePublished, videoDescription: description, videoID: videoID)
+								
+								newVideos.append(newVideo)
+                                self.videos.append(newVideo)
+								
+								// Save the CoreData state to store the new video
 								CoreDataManager.sharedManager().saveContext()
                             }
                         }
@@ -67,7 +70,7 @@ class YouTubePlaylistManager: NSObject {
             } catch {
                 print("Error deserializing JSON: \(error)")
             }
-        }.resume() // Start doing everything we just coded up
+        }.resume() // Start request
     }
     
     enum PlaylistError: Error {

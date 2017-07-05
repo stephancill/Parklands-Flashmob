@@ -14,6 +14,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     var collectionView: UICollectionView!
     var collectionViewLayout: UICollectionViewFlowLayout!
     var playlistManager: YouTubePlaylistManager = YouTubePlaylistManager(id: "PL5YDelCV-MYBfbzJzCmSldkdBET75RKLr")
+//	var playlistManager: YouTubePlaylistManager = YouTubePlaylistManager(id: "PLFgquLnL59ak0yRk-3JKedFxvvITM_uyi")
+	
     var colors: [UIColor] = [.red, .red, .yellow]
     
     override func viewDidLoad() {
@@ -54,6 +56,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         playlistManager.getVideos { (newVideos, error) in
             if let videos = newVideos {
                 if videos.count > 0 {
+					self.playlistManager.videos.sort(by: { (videoX, videoY) -> Bool in
+						return videoX.date.timeIntervalSince1970 > videoY.date.timeIntervalSince1970
+					})
                     self.collectionView.reloadData()
                 }
             }

@@ -11,14 +11,17 @@ import CoreData
 
 class YouTubeVideoData: NSManagedObject {
 	
-	var timeAgo: String {
-		let date = ISO8601DateFormatter()
-		date.formatOptions = .withFullDate
+	var date: Date {
+		let dateFormatter = ISO8601DateFormatter()
+		dateFormatter.formatOptions = .withFullDate
 		let dateString = datePublished
-		let dateTime = date.date(from: dateString!)
-		return dateTime!.timeAgoDisplay()
+		return dateFormatter.date(from: dateString!)!
 	}
 	
+	var timeAgo: String {
+		return date.timeAgoDisplay()
+	}
+
 	convenience init(title: String, datePublished: String, videoDescription: String, videoID: String) {
 		let classStringName = String(describing: YouTubeVideoData.self)
 		let entityDescription = NSEntityDescription.entity(forEntityName: classStringName, in: CoreDataManager.sharedManager().getContext())!
