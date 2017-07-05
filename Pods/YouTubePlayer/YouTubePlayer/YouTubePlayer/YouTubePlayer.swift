@@ -116,7 +116,12 @@ public class YouTubePlayerView: UIView, UIWebViewDelegate {
     // MARK: Web view initialization
 
     private func buildWebView(parameters: [String: AnyObject]) {
-        webView = UIWebView()
+        webView = {
+            let view = UIWebView()
+            view.layer.cornerRadius = 5
+            view.layer.masksToBounds = true
+            return view
+        }()
         webView.allowsInlineMediaPlayback = true
         webView.mediaPlaybackRequiresUserAction = false
         webView.delegate = self
