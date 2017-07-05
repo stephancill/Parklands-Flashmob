@@ -33,7 +33,7 @@
 		AEEF14621F0BC957001F481C /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		AEEF14641F0BC96C001F481C /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D43879E51E5B227100494D86 /* Parklands Flashmob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parklands Flashmob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D43879E81E5B227100494D86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D43879E81E5B227100494D86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
 		D43879EA1E5B227100494D86 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		D43879ED1E5B227100494D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D43879EF1E5B227100494D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -62,6 +62,15 @@
 				6C2FA50A34ED8D7E3B61960A /* Pods_Parklands_Flashmob.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AE13E0BD1F0CD7F8005116EF /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AEEF14621F0BC957001F481C /* UIViewExtension.swift */,
+				AEEF14641F0BC96C001F481C /* DateExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		AE1F49201F0B999D00C8712D /* Legacy */ = {
@@ -95,8 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				AEEF14601F0BBB9D001F481C /* VideoCell.swift */,
-				AEEF14621F0BC957001F481C /* UIViewExtension.swift */,
-				AEEF14641F0BC96C001F481C /* DateExtension.swift */,
+				AE13E0BD1F0CD7F8005116EF /* Extensions */,
 			);
 			name = View;
 			sourceTree = "<group>";

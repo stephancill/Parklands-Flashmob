@@ -29,8 +29,8 @@ class YouTubePlaylistManager: NSObject {
             do {
                 // If response from HTTP request is not nil, try to make a JSON object (Dictionary) from it
                 if let data = data, let json = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = (json["items"] as? [[String: Any]])?.reversed() {
-                    // List of post details dectionaries
-                    var videos: [YouTubeVideo] = []
+                    
+                    var newVideos: [YouTubeVideo] = []
                     
                     for item in items {
                         if let snippet = (item as [String: Any])["snippet"] as? [String: Any] {
@@ -40,11 +40,16 @@ class YouTubePlaylistManager: NSObject {
                             let description = snippet["description"] as! String
                             let videoID = (snippet["resourceId"] as! [String:String])["videoId"]!
                             
-                            videos.append(YouTubeVideo(title: title, datePublished: datePublished, videoDescription: description, videoID: videoID))
+                            let youtubeVideo = YouTubeVideo(title: title, datePublished: datePublished, videoDescription: description, videoID: videoID)
+                            if self.videos.filter({ (video) -> Bool in
+                                return youtubeVideo.videoID == video.videoID
+                            }).count == 0 {
+                                newVideos.append(youtubeVideo)
+                                self.videos.append(youtubeVideo)
+                            }
                         }
                     }
-                    self.videos = videos
-                    callback(videos, nil)
+                    callback(newVideos, nil)
                 } else {
                     callback(nil, PlaylistError.ResponseError)
                 }
