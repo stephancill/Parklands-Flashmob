@@ -14,7 +14,6 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     var collectionView: UICollectionView!
     var collectionViewLayout: UICollectionViewFlowLayout!
     var playlistManager: YouTubePlaylistManager = YouTubePlaylistManager(id: "PL5YDelCV-MYBfbzJzCmSldkdBET75RKLr")
-    var videos: [YouTubeVideo] = []
     var colors: [UIColor] = [.red, .red, .yellow]
     
     override func viewDidLoad() {

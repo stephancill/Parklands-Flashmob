@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class YouTubePlaylistManager: NSObject {
     private let API_KEY = "AIzaSyA0X7IDaxlQT-gqu4BHIRVh2_GrGrpLxRc"
@@ -15,22 +16,29 @@ class YouTubePlaylistManager: NSObject {
         return URL(string: "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=\(PLAYLIST_ID)&key=\(API_KEY)")!
     }
     
-    var videos: [YouTubeVideo] = []
+    var videos: [YouTubeVideoData] = []
     
     init(id: String) {
         self.PLAYLIST_ID = id
         super.init()
-    }
+		
+		let request = NSFetchRequest<YouTubeVideoData>(entityName: "YouTubeVideoData")
+		
+		do {
+			videos = try CoreDataManager.sharedManager().getContext().fetch(request)
+		} catch {
+			print("Error")
+		}
+	}
     
-    func getVideos(callback: @escaping ([YouTubeVideo]?, Error?) -> ()) {
-        // HTTP request execution
-        
+    func getVideos(callback: @escaping ([YouTubeVideoData]?, Error?) -> ()) {
+		// HTTP request execution
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             do {
                 // If response from HTTP request is not nil, try to make a JSON object (Dictionary) from it
                 if let data = data, let json = try JSONSerialization.jsonObject(with: data) as? [String: Any], let items = (json["items"] as? [[String: Any]])?.reversed() {
                     
-                    var newVideos: [YouTubeVideo] = []
+                    var newVideos: [YouTubeVideoData] = []
                     
                     for item in items {
                         if let snippet = (item as [String: Any])["snippet"] as? [String: Any] {
@@ -40,12 +48,15 @@ class YouTubePlaylistManager: NSObject {
                             let description = snippet["description"] as! String
                             let videoID = (snippet["resourceId"] as! [String:String])["videoId"]!
                             
-                            let youtubeVideo = YouTubeVideo(title: title, datePublished: datePublished, videoDescription: description, videoID: videoID)
+                            let youtubeVideo = YouTubeVideoData(title: title, datePublished: datePublished, videoDescription: description, videoID: videoID)
+
                             if self.videos.filter({ (video) -> Bool in
                                 return youtubeVideo.videoID == video.videoID
                             }).count == 0 {
+								print("New")
                                 newVideos.append(youtubeVideo)
                                 self.videos.append(youtubeVideo)
+								CoreDataManager.sharedManager().saveContext()
                             }
                         }
                     }
