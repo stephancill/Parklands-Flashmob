@@ -1,15 +1,12 @@
 PODS:
-  - SwiftyCam (2.2.1)
   - YouTubePlayer (0.3.0)
 
 DEPENDENCIES:
-  - SwiftyCam
   - YouTubePlayer
 
 SPEC CHECKSUMS:
-  SwiftyCam: 966b67eeab2dfcfd0077eaa3c5a6bd69e1748af0
   YouTubePlayer: 88713a96c356f2c88da8925eb61438eda88bcd57
 
-PODFILE CHECKSUM: d2ef0dfb8bbe3ae50dcd42dcaa3e34e61ca61b57
+PODFILE CHECKSUM: 73c7407a7d4e1e2d8a4ac1c1b5a1301597593653
 
 COCOAPODS: 1.2.1

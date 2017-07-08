@@ -7,6 +7,5 @@ target 'Parklands Flashmob' do
 
   # Pods for Parklands Flashmob
   pod 'YouTubePlayer'
-  pod 'SwiftyCam'
 
 end
