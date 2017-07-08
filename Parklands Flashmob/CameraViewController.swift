@@ -7,37 +7,31 @@
 //
 
 import UIKit
-import SwiftyCam
 import MessageUI
 
-class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDelegate, MFMailComposeViewControllerDelegate {
-
-	var captureButton: SwiftyCamButton!
+class CameraViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
 	
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		let buttonRadius: CGFloat = 50
-		captureButton = SwiftyCamButton(frame: CGRect.init(x: self.view.frame.width/2 - buttonRadius / 2, y: self.view.frame.height - 10 - buttonRadius, width: buttonRadius, height: buttonRadius))
-		captureButton.layer.cornerRadius = buttonRadius/2
-		captureButton.layer.borderColor = UIColor.white.cgColor
-		captureButton.layer.borderWidth = 2
-		captureButton.delegate = self
-		
-		cameraDelegate = self
-		
-		self.view.addSubview(captureButton)
-		
+		if (UIImagePickerController.isSourceTypeAvailable(.camera)){
+			let picker = UIImagePickerController()
+			picker.delegate = self
+			picker.sourceType = .camera
+			picker.allowsEditing = true
+			self.present(picker, animated: true, completion: nil)
+		}
+		else{
+			NSLog("No Camera.")
+		}
         navigationItem.title = "📸"
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 	
-	func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
-		composeMail(image: photo)
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+			composeMail(image: image)
+		}
+		picker.dismiss(animated: true, completion: nil)
 	}
 	
 	func composeMail(image: UIImage) {
@@ -45,7 +39,7 @@ class CameraViewController: SwiftyCamViewController, SwiftyCamViewControllerDele
 		
 		mailComposeVC.addAttachmentData(UIImageJPEGRepresentation(image, CGFloat(1.0))!, mimeType: "image/jpeg", fileName:  "\(Date()).jpeg")
 		mailComposeVC.setSubject("My Flashmob Submission")
-		mailComposeVC.setMessageBody("<html><body><p>Hey, please find a photo I've taken attached via the Flashmob app attached.</p></body></html>", isHTML: true)
+		mailComposeVC.setMessageBody("<html><body><p>Sent via the Flashmob app.</p></body></html>", isHTML: true)
 		mailComposeVC.setToRecipients(["flashmob@parklands.co.za"])
 
 		mailComposeVC.mailComposeDelegate = self

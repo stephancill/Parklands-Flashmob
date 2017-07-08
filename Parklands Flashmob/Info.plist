@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
@@ -41,9 +43,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>NSCameraUsageDescription</key>
-	   <string>To Take Photos and Video</string>
-    <key>NSMicrophoneUsageDescription</key>
-	   <string>To Record Audio With Video</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To take photos and videos</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>To record audio</string>
 </dict>
 </plist>
