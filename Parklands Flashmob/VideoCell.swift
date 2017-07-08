@@ -28,7 +28,7 @@ class VideoCell: UICollectionViewCell {
         super.init(frame: frame)
         titleLabel = {
             let label = UILabel(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 20))
-            label.font = UIFont(name: "Times New Roman", size: 22)
+            label.font = UIFont(name: "Helvetica", size: 22)
             label.textColor = .white
             label.numberOfLines = 2
             
@@ -41,10 +41,12 @@ class VideoCell: UICollectionViewCell {
             label.font = UIFont(name: "Times New Roman", size: 12)
             label.textColor = .white
             label.translatesAutoresizingMaskIntoConstraints = false
+			label.textAlignment = .left
             return label
         }()
         self.addSubview(dateLabel)
         dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
+		dateLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
         
         // UIWebView cannot be initialized on background thread
         DispatchQueue.main.async {
@@ -57,8 +59,15 @@ class VideoCell: UICollectionViewCell {
             self.addSubview(self.playerView)
 //            self.playerView.topAnchor.constraint(equalTo: self.dateLabel.bottomAnchor, constant: 10).isActive = true
         }
-        
     }
+	
+	override func layoutSubviews() {
+		super.layoutSubviews()
+		if self.playerView != nil {
+			self.playerView.frame.origin.y = dateLabel.frame.maxY + 12
+		}
+		
+	}
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

@@ -14,20 +14,22 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     var collectionView: UICollectionView!
     var collectionViewLayout: UICollectionViewFlowLayout!
     var playlistManager: YouTubePlaylistManager = YouTubePlaylistManager(id: "PL5YDelCV-MYBfbzJzCmSldkdBET75RKLr")
-//	var playlistManager: YouTubePlaylistManager = YouTubePlaylistManager(id: "PLFgquLnL59ak0yRk-3JKedFxvvITM_uyi")
 	
     var colors: [UIColor] = [.red, .red, .yellow]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		// Set navbar button items
+		navigationItem.setRightBarButton(UIBarButtonItem.init(barButtonSystemItem: .camera, target: self, action: #selector(presentCamera)), animated: true)
+		
         // Create layout for collectionView
         collectionViewLayout = {
             let layout = UICollectionViewFlowLayout()
-            layout.itemSize = CGSize(width: self.view.frame.width - 30, height: self.view.frame.width - 40)
+            layout.itemSize = CGSize(width: self.view.frame.width - 30, height: self.view.frame.width)
             return layout
         }()
-        
+		
         // Create collectionView
         collectionView = {
             let view = UICollectionView.init(frame: self.view.frame, collectionViewLayout: collectionViewLayout)
@@ -41,6 +43,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                 control.addTarget(self, action: #selector(handleRefresh(sender:)), for: .valueChanged)
                 return control
             }()
+			view.translatesAutoresizingMaskIntoConstraints = false
             return view
         }()
         
@@ -49,11 +52,21 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         handleRefresh(sender: collectionView.refreshControl!)
         
         self.view.addSubview(collectionView)
+		
+		// Constraints
+		collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
+		collectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
+		collectionView.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+		collectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
+	
+	func presentCamera() {
+		navigationController?.pushViewController(CameraViewController(), animated: true)
+	}
     
     func handleRefresh(sender: UIRefreshControl) {
         // Fetch videos and alert CollectionView once done
-        playlistManager.getVideos { (newVideos, error) in
+		playlistManager.getVideos(age: .newer) { (newVideos, error) in
             if let videos = newVideos {
                 if videos.count > 0 {
 					self.playlistManager.videos.sort(by: { (videoX, videoY) -> Bool in
@@ -67,15 +80,36 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let video = playlistManager.videos[indexPath.row]
+		
         let cell: VideoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! VideoCell
-        cell.titleLabel.text = video.title
-        cell.titleLabel.sizeToFit()
-        cell.dateLabel.text = video.timeAgo
-        cell.videoID = video.videoID
-        
+		
+		if indexPath.row <= playlistManager.videos.count - 1 {
+			let video = playlistManager.videos[indexPath.row]
+			cell.titleLabel.text = video.title
+			cell.titleLabel.sizeToFit()
+			cell.dateLabel.text = video.timeAgo
+			cell.videoID = video.videoID
+		}
+
         return cell
     }
+	
+	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+		let lastElement = playlistManager.videos.count - 1
+		if indexPath.row == lastElement {
+			// Load more
+			playlistManager.getVideos(age: .older) { (newVideos, error) in
+				if let videos = newVideos {
+					if videos.count > 0 {
+						self.playlistManager.videos.sort(by: { (videoX, videoY) -> Bool in
+							return videoX.date.timeIntervalSince1970 > videoY.date.timeIntervalSince1970
+						})
+						self.collectionView.reloadData()
+					}
+				}
+			}
+		}
+	}
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return playlistManager.videos.count
