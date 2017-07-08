@@ -17,12 +17,9 @@
 		AEEF14631F0BC957001F481C /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF14621F0BC957001F481C /* UIViewExtension.swift */; };
 		AEEF14651F0BC96C001F481C /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEF14641F0BC96C001F481C /* DateExtension.swift */; };
 		D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43879E81E5B227100494D86 /* AppDelegate.swift */; };
-		D43879EB1E5B227100494D86 /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43879EA1E5B227100494D86 /* FeedViewController.swift */; };
 		D43879EE1E5B227100494D86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879EC1E5B227100494D86 /* Main.storyboard */; };
 		D43879F01E5B227100494D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43879EF1E5B227100494D86 /* Assets.xcassets */; };
 		D43879F31E5B227100494D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879F11E5B227100494D86 /* LaunchScreen.storyboard */; };
-		D4C172DB1E894A4900E130E5 /* UIPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4C172DA1E894A4900E130E5 /* UIPost.swift */; };
-		D4D1ECDD1ED2C880006BB7CD /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4D1ECDC1ED2C880006BB7CD /* CameraViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,13 +35,10 @@
 		AEEF14641F0BC96C001F481C /* DateExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		D43879E51E5B227100494D86 /* Parklands Flashmob.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Parklands Flashmob.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D43879E81E5B227100494D86 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 1; };
-		D43879EA1E5B227100494D86 /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		D43879ED1E5B227100494D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D43879EF1E5B227100494D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D43879F21E5B227100494D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D43879F41E5B227100494D86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D4C172DA1E894A4900E130E5 /* UIPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIPost.swift; sourceTree = "<group>"; };
-		D4D1ECDC1ED2C880006BB7CD /* CameraViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		F374C949E1773EBD5C049E83 /* Pods-Parklands Flashmob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parklands Flashmob.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parklands Flashmob/Pods-Parklands Flashmob.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,20 +81,10 @@
 			name = CoreData;
 			sourceTree = "<group>";
 		};
-		AE1F49201F0B999D00C8712D /* Legacy */ = {
-			isa = PBXGroup;
-			children = (
-				D43879EA1E5B227100494D86 /* FeedViewController.swift */,
-				D4C172DA1E894A4900E130E5 /* UIPost.swift */,
-			);
-			name = Legacy;
-			sourceTree = "<group>";
-		};
 		AEEF14591F0B9B7E001F481C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				AE1F491E1F0B820100C8712D /* CollectionViewController.swift */,
-				D4D1ECDC1ED2C880006BB7CD /* CameraViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -157,7 +141,6 @@
 				AEEF145A1F0B9B86001F481C /* Model */,
 				AEEF145F1F0BBB60001F481C /* View */,
 				AEEF14591F0B9B7E001F481C /* Controller */,
-				AE1F49201F0B999D00C8712D /* Legacy */,
 				D43879EC1E5B227100494D86 /* Main.storyboard */,
 				D43879EF1E5B227100494D86 /* Assets.xcassets */,
 				D43879F11E5B227100494D86 /* LaunchScreen.storyboard */,
@@ -290,14 +273,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D43879EB1E5B227100494D86 /* FeedViewController.swift in Sources */,
 				AEEF14651F0BC96C001F481C /* DateExtension.swift in Sources */,
 				AEEF14611F0BBB9D001F481C /* VideoCell.swift in Sources */,
-				D4D1ECDD1ED2C880006BB7CD /* CameraViewController.swift in Sources */,
 				AE13E0E81F0CF544005116EF /* YouTubeVideoData.swift in Sources */,
 				AE1F49221F0B99F700C8712D /* YouTubePlaylistManager.swift in Sources */,
 				AE13E0E61F0CECBB005116EF /* CoreDataManager.swift in Sources */,
-				D4C172DB1E894A4900E130E5 /* UIPost.swift in Sources */,
 				AE13E0E41F0CECAA005116EF /* Feed.xcdatamodeld in Sources */,
 				AEEF14631F0BC957001F481C /* UIViewExtension.swift in Sources */,
 				D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */,
