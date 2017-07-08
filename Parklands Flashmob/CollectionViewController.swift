@@ -8,6 +8,7 @@
 
 import UIKit
 import YouTubePlayer
+import MessageUI
 
 class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
 
@@ -60,9 +61,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 		collectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
 	
-	func presentCamera() {
-		navigationController?.pushViewController(CameraViewController(), animated: true)
-	}
+	
     
     func handleRefresh(sender: UIRefreshControl) {
         // Fetch videos and alert CollectionView once done
@@ -114,4 +113,47 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return playlistManager.videos.count
     }
+}
+
+extension CollectionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
+	// Camera functionality
+	func presentCamera() {
+		if (UIImagePickerController.isSourceTypeAvailable(.camera)){
+			let picker = UIImagePickerController()
+			picker.delegate = self
+			picker.sourceType = .camera
+			picker.allowsEditing = true
+			self.present(picker, animated: true, completion: nil)
+		}
+		else{
+			NSLog("No Camera.")
+		}
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		if let image = info["UIImagePickerControllerOriginalImage"] as? UIImage {
+			composeMail(image: image)
+		}
+		picker.dismiss(animated: false, completion: nil)
+	}
+	
+	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+		picker.dismiss(animated: true, completion: nil)
+	}
+	
+	func composeMail(image: UIImage) {
+		let mailComposeVC = MFMailComposeViewController()
+		
+		mailComposeVC.addAttachmentData(UIImageJPEGRepresentation(image, CGFloat(1.0))!, mimeType: "image/jpeg", fileName:  "\(Date()).jpeg")
+		mailComposeVC.setSubject("My Flashmob Submission")
+		mailComposeVC.setMessageBody("<html><body><p>Sent via the Flashmob app.</p></body></html>", isHTML: true)
+		mailComposeVC.setToRecipients(["flashmob@parklands.co.za"])
+		
+		mailComposeVC.mailComposeDelegate = self
+		self.show(mailComposeVC, sender: self)
+	}
+	
+	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
+		controller.dismiss(animated: true, completion: nil)
+	}
 }
