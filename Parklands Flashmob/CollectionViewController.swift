@@ -16,10 +16,17 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     var collectionViewLayout: UICollectionViewFlowLayout!
     var playlistManager: YouTubePlaylistManager = YouTubePlaylistManager(id: "PL5YDelCV-MYBfbzJzCmSldkdBET75RKLr")
 	
-    var colors: [UIColor] = [.red, .red, .yellow]
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		navigationItem.titleView = {
+			let imageView = UIImageView(image: #imageLiteral(resourceName: "logo-full"))
+			imageView.contentMode = .scaleAspectFit
+			return imageView
+		}()
+		
+		navigationController?.hidesBarsOnSwipe = true
+		navigationController?.navigationBar.barTintColor = .white
 		
 		// Set navbar button items
 		navigationItem.setRightBarButton(UIBarButtonItem.init(barButtonSystemItem: .camera, target: self, action: #selector(presentCamera)), animated: true)
@@ -34,13 +41,14 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         // Create collectionView
         collectionView = {
             let view = UICollectionView.init(frame: self.view.frame, collectionViewLayout: collectionViewLayout)
-            view.backgroundColor = #colorLiteral(red: 0, green: 0.255411133, blue: 0.621219904, alpha: 1)
-            view.delegate = self
+//            view.backgroundColor = #colorLiteral(red: 0, green: 0.255411133, blue: 0.621219904, alpha: 1)
+			view.backgroundColor = .white
+			view.delegate = self
             view.dataSource = self
             view.register(VideoCell.self, forCellWithReuseIdentifier: "cell")
             view.refreshControl = {
                 let control = UIRefreshControl()
-                control.tintColor = .white
+                control.tintColor = .black
                 control.addTarget(self, action: #selector(handleRefresh(sender:)), for: .valueChanged)
                 return control
             }()
@@ -53,7 +61,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         handleRefresh(sender: collectionView.refreshControl!)
         
         self.view.addSubview(collectionView)
-		
+
 		// Constraints
 		collectionView.widthAnchor.constraint(equalTo: self.view.widthAnchor).isActive = true
 		collectionView.heightAnchor.constraint(equalTo: self.view.heightAnchor).isActive = true
@@ -61,8 +69,16 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 		collectionView.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
 	
+	func scrollViewDidScroll(_ scrollView: UIScrollView) {
+		let translation = scrollView.panGestureRecognizer.translation(in: self.view)
+		if scrollView.contentOffset.y <= -15 && translation.y > 0 {
+			UIView.animate(withDuration: 0.2, animations: {
+				self.navigationController?.isNavigationBarHidden = false
+			})
+			
+		}
+	}
 	
-    
     func handleRefresh(sender: UIRefreshControl) {
         // Fetch videos and alert CollectionView once done
 		playlistManager.getVideos(age: .newer) { (newVideos, error) in
@@ -74,9 +90,16 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
                     self.collectionView.reloadData()
                 }
             }
-            sender.endRefreshing()
+			
+			DispatchQueue.main.async {
+				sender.endRefreshing()
+			}
         }
     }
+	
+	func handleSwipe(sender: UISwipeGestureRecognizer) {
+		print(sender.direction)
+	}
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
@@ -113,6 +136,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return playlistManager.videos.count
     }
+	
 }
 
 extension CollectionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {

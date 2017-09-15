@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		// Override point for customization after application launch.
         
         let navigationController = UINavigationController(rootViewController: CollectionViewController())
-        
+        UINavigationBar.appearance().castShadow = ""
 		window = UIWindow(frame: UIScreen.main.bounds)
 		window?.makeKeyAndVisible()
 		window?.rootViewController = navigationController

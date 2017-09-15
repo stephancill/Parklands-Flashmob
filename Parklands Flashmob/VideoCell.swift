@@ -29,7 +29,7 @@ class VideoCell: UICollectionViewCell {
         titleLabel = {
             let label = UILabel(frame: CGRect.init(x: 0, y: 0, width: self.frame.width, height: 20))
             label.font = UIFont(name: "Helvetica", size: 22)
-            label.textColor = .white
+            label.textColor = .black
             label.numberOfLines = 2
             
             return label
@@ -38,8 +38,8 @@ class VideoCell: UICollectionViewCell {
         
         dateLabel = {
             let label = UILabel(frame: CGRect.init(x: 0, y: 20, width: self.frame.width, height: 20))
-            label.font = UIFont(name: "Times New Roman", size: 12)
-            label.textColor = .white
+            label.font = UIFont(name: "Helvetica", size: 12)
+            label.textColor = .black
             label.translatesAutoresizingMaskIntoConstraints = false
 			label.textAlignment = .left
             return label

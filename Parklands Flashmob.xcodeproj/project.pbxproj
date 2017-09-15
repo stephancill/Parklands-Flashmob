@@ -20,6 +20,7 @@
 		D43879EE1E5B227100494D86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879EC1E5B227100494D86 /* Main.storyboard */; };
 		D43879F01E5B227100494D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43879EF1E5B227100494D86 /* Assets.xcassets */; };
 		D43879F31E5B227100494D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879F11E5B227100494D86 /* LaunchScreen.storyboard */; };
+		D4A72EFE1F6B9E8F0097763A /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A72EFD1F6B9E8F0097763A /* UINavigationBarExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		D43879EF1E5B227100494D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D43879F21E5B227100494D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D43879F41E5B227100494D86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D4A72EFD1F6B9E8F0097763A /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		F374C949E1773EBD5C049E83 /* Pods-Parklands Flashmob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parklands Flashmob.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parklands Flashmob/Pods-Parklands Flashmob.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -67,6 +69,7 @@
 			children = (
 				AEEF14621F0BC957001F481C /* UIViewExtension.swift */,
 				AEEF14641F0BC96C001F481C /* DateExtension.swift */,
+				D4A72EFD1F6B9E8F0097763A /* UINavigationBarExtension.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 				AE13E0E41F0CECAA005116EF /* Feed.xcdatamodeld in Sources */,
 				AEEF14631F0BC957001F481C /* UIViewExtension.swift in Sources */,
 				D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */,
+				D4A72EFE1F6B9E8F0097763A /* UINavigationBarExtension.swift in Sources */,
 				AE1F491F1F0B820100C8712D /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
