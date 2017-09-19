@@ -51,8 +51,6 @@ class YouTubePlaylistManager: NSObject {
 			}
 		}
 		
-		print(endpoint)
-		
 		// HTTP request execution
 		URLSession.shared.dataTask(with: URL(string: endpoint)!) { (data, response, err) in
             do {

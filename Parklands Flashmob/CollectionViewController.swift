@@ -10,8 +10,8 @@ import UIKit
 import YouTubePlayer
 import MessageUI
 
-class CollectionViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
-
+class CollectionViewController: UIViewController {
+	
     var collectionView: UICollectionView!
     var collectionViewLayout: UICollectionViewFlowLayout!
     var playlistManager: YouTubePlaylistManager = YouTubePlaylistManager(id: "PL5YDelCV-MYBfbzJzCmSldkdBET75RKLr")
@@ -20,13 +20,18 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         super.viewDidLoad()
 		
 		navigationItem.titleView = {
-			let imageView = UIImageView(image: #imageLiteral(resourceName: "logo-full"))
+			let imageView = UIImageView(image: #imageLiteral(resourceName: "logo-icon"))
 			imageView.contentMode = .scaleAspectFit
 			return imageView
 		}()
 		
-		navigationController?.hidesBarsOnSwipe = true
+		edgesForExtendedLayout = []
+		
+	
 		navigationController?.navigationBar.barTintColor = .white
+		navigationController?.navigationBar.tintColor = .black
+		navigationController?.navigationBar.backgroundColor = .white
+		
 		
 		// Set navbar button items
 		navigationItem.setRightBarButton(UIBarButtonItem.init(barButtonSystemItem: .camera, target: self, action: #selector(presentCamera)), animated: true)
@@ -41,7 +46,6 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         // Create collectionView
         collectionView = {
             let view = UICollectionView.init(frame: self.view.frame, collectionViewLayout: collectionViewLayout)
-//            view.backgroundColor = #colorLiteral(red: 0, green: 0.255411133, blue: 0.621219904, alpha: 1)
 			view.backgroundColor = .white
 			view.delegate = self
             view.dataSource = self
@@ -71,11 +75,14 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 	
 	func scrollViewDidScroll(_ scrollView: UIScrollView) {
 		let translation = scrollView.panGestureRecognizer.translation(in: self.view)
-		if scrollView.contentOffset.y <= -15 && translation.y > 0 {
-			UIView.animate(withDuration: 0.2, animations: {
-				self.navigationController?.isNavigationBarHidden = false
-			})
-			
+		
+		// Hide or unhide navigation bar
+		if translation.y < -50  {
+			self.navigationController?.setNavigationBarHidden(true, animated: true)
+			UIApplication.shared.statusBarView?.backgroundColor = .white
+		} else if translation.y > 50 {
+			self.navigationController?.setNavigationBarHidden(false, animated: true)
+			UIApplication.shared.statusBarView?.backgroundColor = .clear
 		}
 	}
 	
@@ -100,10 +107,13 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 	func handleSwipe(sender: UISwipeGestureRecognizer) {
 		print(sender.direction)
 	}
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+	
+}
+
+extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+	func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 		
-        let cell: VideoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! VideoCell
+		let cell: VideoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! VideoCell
 		
 		if indexPath.row <= playlistManager.videos.count - 1 {
 			let video = playlistManager.videos[indexPath.row]
@@ -112,9 +122,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 			cell.dateLabel.text = video.timeAgo
 			cell.videoID = video.videoID
 		}
-
-        return cell
-    }
+		
+		return cell
+	}
 	
 	func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
 		let lastElement = playlistManager.videos.count - 1
@@ -132,11 +142,10 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
 			}
 		}
 	}
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return playlistManager.videos.count
-    }
 	
+	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+		return playlistManager.videos.count
+	}
 }
 
 extension CollectionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMailComposeViewControllerDelegate {
