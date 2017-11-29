@@ -24,12 +24,12 @@ class YouTubePlaylistManager: NSObject {
         super.init()
 		
 		// Fetch locally cached videos
-		let request = NSFetchRequest<YouTubeVideoData>(entityName: "YouTubeVideoData")
-		do {
-			videos = try CoreDataManager.sharedManager().getContext().fetch(request)
-		} catch {
-			print("Error")
-		}
+//		let request = NSFetchRequest<YouTubeVideoData>(entityName: "YouTubeVideoData")
+//		do {
+//			videos = try CoreDataManager.sharedManager().getContext().fetch(request)
+//		} catch {
+//			print("Error")
+//		}
 	}
     
 	func getVideos(age: PaginationAge, callback: @escaping ([YouTubeVideoData]?, Error?) -> ()) {

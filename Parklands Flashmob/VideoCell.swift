@@ -7,20 +7,20 @@
 //
 
 import UIKit
-import YouTubePlayer
+import youtube_ios_player_helper
 
 class VideoCell: UICollectionViewCell {
     var titleLabel: UILabel!
     var dateLabel: UILabel!
-    private var playerView: YouTubePlayerView!
+	var shareButton: UIButton!
+	
+    private var playerView: YTPlayerView!
+	
     var videoID: String? {
-        get {
-            return self.videoID
-        }
-        set(id) {
-            DispatchQueue.main.async {
-                self.playerView.loadVideoID(videoID: id!)
-            }
+        didSet {
+			if let id = videoID {
+				self.playerView.load(withVideoId: id, playerVars: ["playsInline": true])
+			}
         }
     }
     
@@ -48,16 +48,23 @@ class VideoCell: UICollectionViewCell {
         dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
 		dateLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
 		
-        DispatchQueue.main.async {
-            self.playerView = {
-                let player = YouTubePlayerView(frame: CGRect.init(x: 0, y: 80, width: self.frame.width, height: self.frame.width * 3 / 4))
-                player.dropShadow()
-                player.translatesAutoresizingMaskIntoConstraints = false
-                return player
-            }()
-            self.addSubview(self.playerView)
-//            self.playerView.topAnchor.constraint(equalTo: self.dateLabel.bottomAnchor, constant: 10).isActive = true
-        }
+		self.shareButton = {
+			let button = UIButton()
+			button.setTitle("Share", for: .normal)
+			button.tintColor = .blue
+			button.translatesAutoresizingMaskIntoConstraints = false
+			return button
+		}()
+		self.addSubview(self.shareButton)
+		self.shareButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
+		
+		self.playerView = {
+			let player = YTPlayerView(frame: CGRect.init(x: 0, y: 80, width: self.frame.width, height: self.frame.width * 3 / 4))
+			player.dropShadow()
+			player.translatesAutoresizingMaskIntoConstraints = false
+			return player
+		}()
+		self.addSubview(self.playerView)
     }
 	
 	override func layoutSubviews() {

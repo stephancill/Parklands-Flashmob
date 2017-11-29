@@ -6,6 +6,6 @@ target 'Parklands Flashmob' do
   use_frameworks!
 
   # Pods for Parklands Flashmob
-  pod 'YouTubePlayer'
+  pod 'youtube-ios-player-helper', '~> 0.1'
 
 end

@@ -20,6 +20,7 @@
 		D43879EE1E5B227100494D86 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879EC1E5B227100494D86 /* Main.storyboard */; };
 		D43879F01E5B227100494D86 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D43879EF1E5B227100494D86 /* Assets.xcassets */; };
 		D43879F31E5B227100494D86 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D43879F11E5B227100494D86 /* LaunchScreen.storyboard */; };
+		D46101271FCEFF5500FBC3F3 /* PlaylistPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D46101261FCEFF5500FBC3F3 /* PlaylistPickerCell.swift */; };
 		D4A72EFE1F6B9E8F0097763A /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A72EFD1F6B9E8F0097763A /* UINavigationBarExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -40,6 +41,7 @@
 		D43879EF1E5B227100494D86 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D43879F21E5B227100494D86 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D43879F41E5B227100494D86 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D46101261FCEFF5500FBC3F3 /* PlaylistPickerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistPickerCell.swift; sourceTree = "<group>"; };
 		D4A72EFD1F6B9E8F0097763A /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		F374C949E1773EBD5C049E83 /* Pods-Parklands Flashmob.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Parklands Flashmob.release.xcconfig"; path = "Pods/Target Support Files/Pods-Parklands Flashmob/Pods-Parklands Flashmob.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -104,6 +106,7 @@
 		AEEF145F1F0BBB60001F481C /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D46101261FCEFF5500FBC3F3 /* PlaylistPickerCell.swift */,
 				AEEF14601F0BBB9D001F481C /* VideoCell.swift */,
 				AE13E0BD1F0CD7F8005116EF /* Extensions */,
 			);
@@ -285,6 +288,7 @@
 				AEEF14631F0BC957001F481C /* UIViewExtension.swift in Sources */,
 				D43879E91E5B227100494D86 /* AppDelegate.swift in Sources */,
 				D4A72EFE1F6B9E8F0097763A /* UINavigationBarExtension.swift in Sources */,
+				D46101271FCEFF5500FBC3F3 /* PlaylistPickerCell.swift in Sources */,
 				AE1F491F1F0B820100C8712D /* CollectionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
