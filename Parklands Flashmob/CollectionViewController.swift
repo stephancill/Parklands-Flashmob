@@ -40,7 +40,7 @@ class CollectionViewController: UIViewController {
 		navigationController?.navigationBar.backgroundColor = .white
 
 		// Set navbar button items
-		navigationItem.setRightBarButton(UIBarButtonItem.init(barButtonSystemItem: .camera, target: self, action: #selector(presentCamera)), animated: true)
+		navigationItem.setRightBarButton(UIBarButtonItem.init(barButtonSystemItem: .camera, target: self, action: #selector(cameraButtonPressed)), animated: true)
 		
 		pickerView = {
 			let view = UIPickerView(frame: CGRect.zero)
@@ -190,7 +190,7 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
 	
 	func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 		if indexPath.section == 0 {
-			return CGSize(width: self.view.frame.width - 30, height: 150)
+			return CGSize(width: self.view.frame.width - 30, height: 75)
 		} else {
 			return CGSize(width: self.view.frame.width - 30, height: self.view.frame.width)
 		}
@@ -213,9 +213,10 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
 		
 		let cell: VideoCell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! VideoCell
 		
+		cell.shareButton.addTarget(self, action: #selector(sharePost(sender:)), for: .touchUpInside)
+		
 		guard let playlistManager = self.playlistManager else {
 			return cell
-			
 		}
 		
 		if indexPath.row <= playlistManager.videos.count - 1 {
@@ -266,19 +267,54 @@ extension CollectionViewController: UICollectionViewDelegate, UICollectionViewDa
 	}
 }
 
+// Sharing
 extension CollectionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, MFMessageComposeViewControllerDelegate {
-	// Camera functionality
-	func presentCamera() {
-		if (UIImagePickerController.isSourceTypeAvailable(.camera)){
+	func cameraButtonPressed() {
+		let actionSheet = UIAlertController.init(title: "Please choose a source type", message: nil, preferredStyle: .actionSheet)
+		actionSheet.addAction(UIAlertAction.init(title: "Take Photo", style: .default, handler: { (action) in
+			self.sourceImage(from: .camera)
+		}))
+		actionSheet.addAction(UIAlertAction.init(title: "Choose Photo", style: .default, handler: { (action) in
+			self.sourceImage(from: .photoLibrary)
+			
+		}))
+		actionSheet.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: { (action) in
+
+		}))
+		//Present the controller
+		self.present(actionSheet, animated: true, completion: nil)
+	}
+	
+	// Choose image or present camera
+	func sourceImage(from source: UIImagePickerControllerSourceType) {
+		if (UIImagePickerController.isSourceTypeAvailable(source)){
 			let picker = UIImagePickerController()
 			picker.delegate = self
-			picker.sourceType = .camera
+			picker.sourceType = source
 			picker.allowsEditing = true
 			self.present(picker, animated: true, completion: nil)
 		}
 		else{
-			NSLog("No Camera.")
+			NSLog("Source \(source) not found")
 		}
+	}
+	
+	func sharePost(sender: UIButton) {
+		// text to share
+		let text = "Check out this video from the Parklands Flashmob app! https://www.youtube.com/watch?v=\((sender.superview as! VideoCell).videoID!)"
+		print(text)
+		
+		// set up activity view controller
+		let textToShare = [ text ]
+		let activityViewController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+		activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+		
+		// exclude some activity types from the list (optional)
+		// activityViewController.excludedActivityTypes = [ UIActivityType.airDrop, UIActivityType.postToFacebook ]
+		
+		// present the view controller
+		self.present(activityViewController, animated: true, completion: nil)
+		
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -305,7 +341,6 @@ extension CollectionViewController: UIImagePickerControllerDelegate, UINavigatio
 	}
 	
 	func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-		print("dismissed")
 		controller.dismiss(animated: true, completion: nil)
 	}
 }

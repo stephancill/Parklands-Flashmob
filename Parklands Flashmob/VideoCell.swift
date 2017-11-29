@@ -27,7 +27,7 @@ class VideoCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel = {
-            let label = UILabel(frame: CGRect.init(x: 0, y: 10, width: self.frame.width, height: 20))
+            let label = UILabel(frame: CGRect.init(x: 0, y: 10, width: self.frame.width * 0.75, height: 20))
             label.font = UIFont(name: "Helvetica", size: 18)
             label.textColor = .black
             label.numberOfLines = 2
@@ -46,17 +46,20 @@ class VideoCell: UICollectionViewCell {
         }()
         self.addSubview(dateLabel)
         dateLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5).isActive = true
-		dateLabel.widthAnchor.constraint(equalTo: self.widthAnchor).isActive = true
+		dateLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.75).isActive = true
 		
 		self.shareButton = {
 			let button = UIButton()
-			button.setTitle("Share", for: .normal)
 			button.tintColor = .blue
 			button.translatesAutoresizingMaskIntoConstraints = false
+			button.setImage(#imageLiteral(resourceName: "options"), for: .normal)
 			return button
 		}()
 		self.addSubview(self.shareButton)
-		self.shareButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
+		self.shareButton.topAnchor.constraint(equalTo: self.topAnchor, constant: 0).isActive = true
+		self.shareButton.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
+		self.shareButton.widthAnchor.constraint(equalToConstant: 40).isActive = true
+		self.shareButton.heightAnchor.constraint(equalToConstant: 40).isActive = true
 		
 		self.playerView = {
 			let player = YTPlayerView(frame: CGRect.init(x: 0, y: 80, width: self.frame.width, height: self.frame.width * 3 / 4))

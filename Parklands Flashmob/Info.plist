@@ -17,9 +17,9 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>0.1</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -28,6 +28,8 @@
 	<string>To take photos and videos</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>To record audio</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Choose a photo to send to Parklands Flashmob</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
